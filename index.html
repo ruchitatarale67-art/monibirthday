@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Monika Tai 🎉</title>
+  <style>
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      overflow:hidden;
+      background: linear-gradient(120deg,#0f172a 0%, #0b1220 50%, #04212b 100%);
+      color:#fff;
+      display:flex;align-items:center;justify-content:center;
+    }
+
+    /* moving starry background */
+    .bg{
+      position:fixed;inset:0;z-index:0;pointer-events:none;
+      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.06), transparent 2%),
+                  radial-gradient(circle at 80% 30%, rgba(255,255,255,0.04), transparent 2%),
+                  linear-gradient(180deg, rgba(255,255,255,0.02), transparent 60%);
+      animation: drift 20s linear infinite;
+      mix-blend-mode:screen;
+    }
+    @keyframes drift{ from {transform:translateY(0)} to{transform:translateY(-60px)} }
+
+    /* main card */
+    .card{
+      width:100%;max-width:1100px;height:640px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:18px;box-shadow:0 10px 40px rgba(2,6,23,0.7);position:relative;overflow:hidden;padding:28px;z-index:2;
+      border:1px solid rgba(255,255,255,0.04);
+    }
+
+    /* header */
+    .header{display:flex;justify-content:space-between;align-items:center}
+    .title{font-size:34px;font-weight:700;letter-spacing:0.4px}
+    .subtitle{font-size:14px;opacity:0.9}
+
+    /* left column - scene */
+    .scene{display:grid;grid-template-columns:1fr 420px;gap:20px;margin-top:18px;height:calc(100% - 80px)}
+    .left{
+      position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));border-radius:12px;padding:18px;overflow:hidden;
+      display:flex;flex-direction:column;justify-content:space-between
+    }
+
+    /* cake */
+    .cake-wrap{display:flex;align-items:center;justify-content:center;height:340px}
+    .cake{
+      width:260px;background:linear-gradient(180deg,#ffcfba,#ffb3a7);border-radius:18px;padding:18px;position:relative;box-shadow:0 8px 30px rgba(0,0,0,0.35)
+    }
+    .cake .layer{height:60px;border-radius:12px;margin:6px 0;position:relative}
+    .frost{background:#fff;opacity:0.95;padding:8px;border-radius:10px}
+    .candles{position:absolute;left:50%;top:-36px;transform:translateX(-50%);display:flex;gap:8px}
+    .candle{width:8px;height:30px;background:#fff;border-radius:3px;position:relative;box-shadow:inset 0 -3px 6px rgba(0,0,0,0.08)}
+    .flame{position:absolute;top:-18px;left:50%;transform:translateX(-50%);width:12px;height:18px;border-radius:50% 50% 50% 20%;background:linear-gradient(180deg,#ffd86b,#ff6b6b);filter:drop-shadow(0 3px 6px rgba(255,150,50,0.4));animation:flicker 1s infinite}
+    @keyframes flicker{0%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(0.9)}100%{transform:translateX(-50%) scale(1)} }
+
+    /* balloons */
+    .balloons{position:absolute;right:16px;top:14px;display:flex;flex-direction:column;gap:12px}
+    .balloon{width:48px;height:64px;border-radius:50% 50% 45% 45%;position:relative;animation:float 6s ease-in-out infinite}
+    .balloon::after{content:'';position:absolute;left:48%;bottom:-22px;width:2px;height:22px;background:rgba(255,255,255,0.12);}
+    .b1{background:linear-gradient(180deg,#ff6b6b,#ffb3b3);animation-delay:0s}
+    .b2{background:linear-gradient(180deg,#ffbe6b,#fff2b8);animation-delay:1s}
+    .b3{background:linear-gradient(180deg,#6bd6ff,#bfefff);animation-delay:2s}
+    @keyframes float{0%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}100%{transform:translateY(0) rotate(-3deg)}}
+
+    /* dolls - simple SVG avatars */
+    .dolls{display:flex;gap:14px;align-items:center}
+    .avatar{width:92px;height:130px;background:linear-gradient(180deg,#fff, #fbeaea);border-radius:12px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+    .head{width:52px;height:52px;border-radius:50%;background:#ffd;display:flex;align-items:center;justify-content:center;margin-top:6px}
+    .eyes{width:8px;height:8px;border-radius:50%;background:#333;margin:0 6px}
+    .body{width:56px;height:52px;border-radius:10px;margin-top:8px;background:linear-gradient(180deg,#ffd6f0,#ffb6e3)}
+
+    /* right column - cards/wishes + controls */
+    .right{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border-radius:12px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+    .cards{display:flex;flex-direction:column;gap:12px}
+    .card-item{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px;backdrop-filter: blur(3px);border:1px solid rgba(255,255,255,0.02)}
+    .wish-text{font-size:18px;font-weight:600}
+    .from{font-size:12px;opacity:0.85;margin-top:6px}
+
+    /* buttons */
+    .controls{display:flex;gap:10px;flex-wrap:wrap}
+    button{background:linear-gradient(180deg,#7c3aed,#5b21b6);border:none;padding:10px 14px;border-radius:10px;color:white;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(92,46,157,0.18)}
+    .secondary{background:linear-gradient(180deg,#0ea5a4,#0b7285)}
+
+    /* glitter */
+    .glitter{position:absolute;inset:0;pointer-events:none}
+    .spark{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.9);opacity:0;filter:blur(0.6px);animation:twinkle 2.4s linear infinite}
+    @keyframes twinkle{0%{opacity:0;transform:translateY(0) scale(0.6)}10%{opacity:1}50%{opacity:0.6;transform:translateY(-40px) scale(1)}100%{opacity:0}}
+
+    /* footer */
+    .footer{position:absolute;left:18px;bottom:14px;font-size:13px;opacity:0.9}
+
+    /* small responsive */
+    @media (max-width:880px){
+      .scene{grid-template-columns:1fr;}
+      .right{height:260px}
+      .card{height:auto}
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="card" role="main" aria-label="Birthday card for Monika">
+    <div class="header">
+      <div>
+        <div class="title">Happy Birthday, Monika Tai! 🎂</div>
+        <div class="subtitle">A special animated greeting — music, cake, balloons & more.</div>
+      </div>
+      <div style="text-align:right">
+        <button id="playSong">Play Song</button>
+        <button id="celebrate" class="secondary">Celebrate!</button>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="left">
+        <div style="position:relative">
+          <div class="balloons" aria-hidden>
+            <div class="balloon b1"></div>
+            <div class="balloon b2"></div>
+            <div class="balloon b3"></div>
+          </div>
+
+          <div class="cake-wrap">
+            <div class="cake" aria-hidden>
+              <div class="candles">
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+              </div>
+              <div class="layer frost">Happy Birthday</div>
+              <div class="layer" style="background:linear-gradient(180deg,#ffd2a6,#ff9f7a)"></div>
+              <div class="layer frost">To our dear Monika Tai</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+          <div class="dolls" aria-hidden>
+            <div class="avatar" title="Doll 1">
+              <div class="head">😊</div>
+              <div class="body"></div>
+            </div>
+            <div class="avatar" title="Doll 2">
+              <div class="head">😍</div>
+              <div class="body" style="background:linear-gradient(180deg,#d6f5ff,#bfe9ff)"></div>
+            </div>
+            <div class="avatar" title="Doll 3">
+              <div class="head">🤍</div>
+              <div class="body" style="background:linear-gradient(180deg,#fff0d6,#ffe1b3)"></div>
+            </div>
+          </div>
+
+          <div style="text-align:right">
+            <div style="font-weight:700;font-size:20px">With lots of love 💖</div>
+            <div style="font-size:13px;opacity:0.9">from your friends & family</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div>
+          <div class="cards">
+            <div class="card-item">
+              <div class="wish-text">May your day be full of music, cake and sparkle!</div>
+              <div class="from">— Everyone who loves you</div>
+            </div>
+            <div class="card-item">
+              <div class="wish-text">Wishing you health, joy and endless laughs.</div>
+              <div class="from">— Your well-wishers</div>
+            </div>
+            <div class="card-item">
+              <div class="wish-text">Keep shining — today and always ✨</div>
+              <div class="from">— Ruchi</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="controls">
+            <button id="toggleNotes">Show Musical Notes</button>
+            <button id="sparkle" class="secondary">Toggle Glitter</button>
+            <button id="cardFlip">Flip Wishes</button>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+            <div style="font-size:13px;opacity:0.9">Click Play Song to hear a little birthday melody played with instruments.</div>
+            <div style="font-size:13px;font-weight:700">Created by Ruchi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glitter" id="glitterArea" aria-hidden></div>
+    <div class="footer">Made with ❤️</div>
+  </div>
+
+  <script>
+    // -------------------- WebAudio Birthday Melody --------------------
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let ctx = null;
+    const melody = [
+      // notes: frequency in Hz and duration in secs (simple 'Happy Birthday' theme)
+      [392, 0.4], [392, 0.4], [440,0.8], [392,0.8], [523.25,0.8], [494,1.2],
+      [392,0.4], [392,0.4], [440,0.8], [392,0.8], [587.33,0.8], [523.25,1.2],
+      [392,0.4], [392,0.4], [784,0.8], [659.25,0.8], [523.25,0.8], [494,0.8], [440,1.4]
+    ];
+
+    function playMelody(){
+      if(!ctx) ctx = new AudioContext();
+      const now = ctx.currentTime;
+      let time = now + 0.05;
+      melody.forEach(([freq,dur],i)=>{
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sawtooth';
+        o.frequency.value = freq;
+        g.gain.value = 0;
+        o.connect(g);
+        g.connect(ctx.destination);
+        // instrument-like envelope
+        g.gain.setValueAtTime(0, time);
+        g.gain.linearRampToValueAtTime(0.18, time + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
+        o.start(time);
+        o.stop(time + dur + 0.02);
+        time += dur;
+      });
+    }
+
+    document.getElementById('playSong').addEventListener('click', ()=>{
+      try{
+        playMelody();
+      }catch(e){
+        console.warn('Audio failed',e);
+      }
+    });
+
+    // -------------------- Glitter / Sparkles --------------------
+    const glitterArea = document.getElementById('glitterArea');
+    let glitterOn = false;
+    function makeSpark(x,y,delay){
+      const s = document.createElement('div');
+      s.className = 'spark';
+      s.style.left = x + 'px';
+      s.style.top = y + 'px';
+      s.style.animationDelay = (Math.random()*1.6 + (delay||0)) + 's';
+      s.style.width = (Math.random()*6 + 3) + 'px';
+      s.style.height = s.style.width;
+      glitterArea.appendChild(s);
+      setTimeout(()=>s.remove(),4000);
+    }
+    function toggleGlitter(){
+      glitterOn = !glitterOn;
+      if(glitterOn){
+        // create a bunch of sparkles
+        for(let i=0;i<40;i++){
+          makeSpark(Math.random()*window.innerWidth, Math.random()*window.innerHeight);
+        }
+        // keep adding a few every second
+        glitterArea._interval = setInterval(()=>{
+          for(let i=0;i<6;i++) makeSpark(Math.random()*window.innerWidth, Math.random()*window.innerHeight);
+        },900);
+      }else{
+        clearInterval(glitterArea._interval);
+      }
+    }
+    document.getElementById('sparkle').addEventListener('click', toggleGlitter);
+
+    // -------------------- Musical notes animation toggle --------------------
+    let notesVisible = false;
+    const noteEls = [];
+    function createNote(){
+      const n = document.createElement('div');
+      n.textContent = '♪';
+      n.style.position = 'fixed';
+      n.style.left = (Math.random()*70 + 5) + '%';
+      n.style.bottom = '-10px';
+      n.style.fontSize = (12+Math.random()*30) + 'px';
+      n.style.opacity = 0.9;
+      n.style.transform = 'translateY(0)';
+      n.style.pointerEvents = 'none';
+      document.body.appendChild(n);
+      const dur = 4000 + Math.random()*3000;
+      const dx = (Math.random()*80 - 40);
+      n.animate([
+        {transform: 'translateY(0) translateX(0) rotate(0deg)', opacity:1},
+        {transform: `translateY(-${200+Math.random()*180}px) translateX(${dx}px) rotate(${dx/2}deg)`, opacity:0}
+      ],{duration:dur,iterations:1,easing:'ease-out'});
+      setTimeout(()=>n.remove(),dur+50);
+    }
+    let noteInterval;
+    document.getElementById('toggleNotes').addEventListener('click', ()=>{
+      notesVisible = !notesVisible;
+      if(notesVisible){
+        noteInterval = setInterval(createNote, 600);
+      }else{
+        clearInterval(noteInterval);
+      }
+    });
+
+    // -------------------- Celebrate: confetti + brief melody --------------------
+    document.getElementById('celebrate').addEventListener('click', ()=>{
+      // quick confetti: create colorful rectangles
+      for(let i=0;i<120;i++){
+        const c = document.createElement('div');
+        c.style.position='fixed';c.style.width='8px';c.style.height='14px';
+        c.style.left = (Math.random()*100)+'%';c.style.top = (Math.random()*20)+'%';
+        c.style.transform = `rotate(${Math.random()*360}deg)`;
+        c.style.background = `hsl(${Math.random()*360} 80% 60%)`;
+        c.style.opacity = 0.9;c.style.zIndex=9999;document.body.appendChild(c);
+        const fall = c.animate([
+          {transform:c.style.transform, opacity:1},
+          {transform: `translateY(${400+Math.random()*600}px) rotate(${Math.random()*720}deg)`, opacity:0}
+        ],{duration:1200+Math.random()*1400,easing:'cubic-bezier(.1,.7,.1,1)'});
+        setTimeout(()=>c.remove(),2200);
+      }
+      // play melody
+      playMelody();
+    });
+
+    // -------------------- Flip card (rotate through wishes) --------------------
+    const cardItems = Array.from(document.querySelectorAll('.card-item'));
+    let flipIndex = 0;
+    document.getElementById('cardFlip').addEventListener('click', ()=>{
+      flipIndex = (flipIndex+1) % cardItems.length;
+      cardItems.forEach((ci,i)=>{
+        ci.style.transform = (i===flipIndex) ? 'scale(1.02) translateX(0)' : 'scale(0.98) translateX(-6px)';
+        ci.style.opacity = (i===flipIndex)?1:0.7;
+      });
+    });
+
+    // small accessibility: spacebar plays song
+    window.addEventListener('keydown', (e)=>{ if(e.code==='Space') { e.preventDefault(); playMelody(); } });
+
+    // initial small sparkle
+    setTimeout(()=>{ for(let i=0;i<12;i++) makeSpark(Math.random()*window.innerWidth, Math.random()*window.innerHeight,i*0.05) },400);
+  </script>
+</body>
+</html>
